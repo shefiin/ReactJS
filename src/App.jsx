@@ -1,12 +1,22 @@
+import { useState } from 'react';
 import './App.css'
 
 
-function Item({ name, isPacked }) {
-  if(isPacked) {
-    return <li className='item'>{name} ✅</li>;
-  }
-  return <li className='item'>{name} ❌</li>;
+
+function Item({name, initialPacked}) {
+  const [isPacked, setIsPacked] = useState(initialPacked);
+
+  return (
+    <li 
+      className='item'
+      onClick={() => setIsPacked(!isPacked)}
+      style={{cursor: "pointer"}}
+    >
+      {name} {isPacked ? "✅" : ""}
+    </li>
+  )
 }
+
 
 
 function App() {
@@ -24,7 +34,7 @@ function App() {
       <h1>My Packing List</h1>
       <ul>
         {packingList.map((item, index) => (
-          <Item key={index} name={item.name} isPacked={item.isPacked}/>
+          <Item key={index} name={item.name} initialPacked={item.isPacked}/>
         ))}
       </ul>
     </div>
