@@ -1,30 +1,26 @@
-import { useState, useEffect } from "react";
+import React, { useState } from 'react'
 import "./App.css";
 
 
-function App() {
+const App = () => {
+  const [name, setName] = useState("")
 
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setData("Shefin is a good man🥰");
-      setLoading(false);
-    }, 2000);
-  }, []);
-
-
-  if(loading) {
-    return <h2>⏳ Loading...</h2>
-  } else {
-    return (
-      <div>
-        <h2>✅ Data Loaded Successfully</h2>
-        <p>{data}</p>
-      </div>
-    )
+  function HandleChange(event) {
+    setName(event.target.value)
+    
   }
-}
+   
+  return (
+    <div className='container'>
+      <h1>Hello {name}</h1>
+      <input 
+        onChange={HandleChange}
+        type="text" 
+        placeholder="What's your name?" 
+      />
+      <button>Submit</button>
+    </div>
+  );
+};
 
 export default App;
