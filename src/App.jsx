@@ -1,16 +1,14 @@
+import { useState } from 'react';
 import './App.css'
 
 function App() {
-
-  const Welcome = (props) => {
-    return <div>{props.children}</div>;
-  }
+  const [count, setCount ] = useState(0);
 
   return (
-    <Welcome>
-      <h1>Hello, world!</h1>
-      <p>Welcome to React.</p>
-    </Welcome>
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click</button>
+    </div>
   );
 };
 
