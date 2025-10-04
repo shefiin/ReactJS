@@ -3,23 +3,26 @@ import './App.css'
 
 
 
-function Greeting({ isLoggedIn }) {
-  return <h1>{isLoggedIn ? "Welcome Back!" : "Please sign In"}</h1>
+function Notification({ hasNotification }) {
+  return (
+    <div>
+      {hasNotification && <p>You have new notifications🔔</p>}
+    </div>
+  )
 }
 
 
-
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [hasNotification, setHasNotification] = useState(false)
 
   return (
 
     <div>
-      <Greeting isLoggedIn={isLoggedIn}/>
-      <button style={isLoggedIn ? {backgroundColor: "red"} : {backgroundColor: "green"}} onClick={() => setIsLoggedIn(!isLoggedIn)}>
-        {isLoggedIn ? "Logout" : "Login"}
+      <h1>Notifications Demo</h1>
+      <Notification hasNotification={hasNotification}/>
+      <button style={hasNotification ? {backgroundColor: "gray"} : {backgroundColor: "green"}} onClick={() => setHasNotification(!hasNotification)}> 
+        {hasNotification ? "Clear notifications" : "Add Notification"}
       </button>
-
     </div>
 
   );
