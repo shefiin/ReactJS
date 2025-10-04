@@ -3,40 +3,23 @@ import './App.css'
 
 
 
-function Item({name, initialPacked}) {
-  const [isPacked, setIsPacked] = useState(initialPacked);
-
-  return (
-    <li 
-      className='item'
-      onClick={() => setIsPacked(!isPacked)}
-      style={{cursor: "pointer"}}
-    >
-      {name} {isPacked ? "✅" : ""}
-    </li>
-  )
+function Greeting({ isLoggedIn }) {
+  return <h1>{isLoggedIn ? "Welcome Back!" : "Please sign In"}</h1>
 }
 
 
 
 function App() {
-  const packingList =[
-    { name: "Space Suit", isPacked: true },
-    { name: "Helmet", isPacked: false },
-    { name: "Oxygen Tank", isPacked: true },
-    { name: "Boots", isPacked: false },
-    { name: "Perfume", isPacked: false },
-  ];
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   return (
 
     <div>
-      <h1>My Packing List</h1>
-      <ul>
-        {packingList.map((item, index) => (
-          <Item key={index} name={item.name} initialPacked={item.isPacked}/>
-        ))}
-      </ul>
+      <Greeting isLoggedIn={isLoggedIn}/>
+      <button style={isLoggedIn ? {backgroundColor: "red"} : {backgroundColor: "green"}} onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        {isLoggedIn ? "Logout" : "Login"}
+      </button>
+
     </div>
 
   );
