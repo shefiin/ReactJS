@@ -1,14 +1,34 @@
-import { useState } from 'react';
 import './App.css'
 
+
+function Item({ name, isPacked }) {
+  if(isPacked) {
+    return <li className='item'>{name} ✅</li>;
+  }
+  return <li className='item'>{name} ❌</li>;
+}
+
+
 function App() {
-  const [count, setCount ] = useState(0);
+  const packingList =[
+    { name: "Space Suit", isPacked: true },
+    { name: "Helmet", isPacked: false },
+    { name: "Oxygen Tank", isPacked: true },
+    { name: "Boots", isPacked: false },
+    { name: "Perfume", isPacked: false },
+  ];
 
   return (
+
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click</button>
+      <h1>My Packing List</h1>
+      <ul>
+        {packingList.map((item, index) => (
+          <Item key={index} name={item.name} isPacked={item.isPacked}/>
+        ))}
+      </ul>
     </div>
+
   );
 };
 
